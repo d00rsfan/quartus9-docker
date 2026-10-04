@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+project_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+export QUARTUS_INSTALL_DIR="$project_dir/.local/altera/90sp2"
+# Recent host Wine builds use WoW64; the Docker image explicitly uses win32.
+export WINEARCH=${WINEARCH:-win64}
+if [[ ! -f "$QUARTUS_INSTALL_DIR/quartus/bin/quartus_sh.exe" ]]; then
+    printf 'Extract first: python3 "%s/scripts/extract-quartus.py" "%s/90sp2_quartus_free.exe" "%s"\n' \
+        "$project_dir" "$project_dir" "$QUARTUS_INSTALL_DIR" >&2
+    exit 1
+fi
+exec "$project_dir/scripts/run-quartus.sh" "$@"

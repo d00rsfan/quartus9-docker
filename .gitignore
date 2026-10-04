@@ -1,0 +1,20 @@
+*.exe
+.local/
+__pycache__/
+*.pyc
+# Local FPGA checkout used for the README example; not part of this project.
+/zx-evo/
+# Local credentials and editor/agent configuration must never be published.
+.env
+.env.*
+.aws/
+.codex/
+.agents/
+.vscode/
+tests/smoke/db/
+tests/smoke/incremental_db/
+tests/smoke/output_files/
+tests/smoke/*.qws
+tests/smoke/*.qdf
+tests/smoke/*.rpt
+tests/smoke/*.summary
